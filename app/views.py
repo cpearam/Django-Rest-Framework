@@ -1,24 +1,19 @@
-from django.http import JsonResponse
+from rest_framework import generics
 from django.shortcuts import get_object_or_404
 from app.serializers import ProductSerializer, OrderSerializer
 from app.models import Product, Order, OrderItem
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
 
-@api_view(['GET'])
-def product_list(request):
-    products = Product.objects.all()
-    serializers = ProductSerializer(products, many=True)
-    return Response(serializers.data)
 
-@api_view(['GET'])
-def product_detail(request, pk):
-    product = get_object_or_404(Product, pk=pk)
-    serializers = ProductSerializer(product)
-    return Response(serializers.data)
+class ProductListAPIView(generics.ListAPIView):
+    queryset = Product.objects.filter(stock__gt=0)
+    serializer_class = ProductSerializer
+    
+class ProductDetailAPIView(generics.RetrieveAPIView):
+    queryset = Product.objects.all()
+    serializer_class = ProductSerializer
 
-@api_view(['GET'])
-def orders_list(request):
-    order = Order.objects.all()
-    serializers = OrderSerializer(order, many=True)
-    return Response(serializers.data)
+class OrderListAPIView(generics.ListAPIView):
+    queryset = Order.objects.prefetch_related('items__product')
+    serializer_class = OrderSerializer
