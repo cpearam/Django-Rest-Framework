@@ -19,6 +19,11 @@ class ProductSerializer(serializers.ModelSerializer):
             ) 
         return value
     
+class ProductInfoSerializer(serializers.Serializer):
+    products = ProductSerializer(many=True)
+    count = serializers.IntegerField()
+    max_price = serializers.FloatField()
+    
 class OrderItemSerializer(serializers.ModelSerializer):
     product_name = serializers.CharField(source='product.name')
     product_price = serializers.DecimalField(
