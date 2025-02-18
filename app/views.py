@@ -5,13 +5,23 @@ from app.serializers import ProductSerializer, OrderSerializer, ProductInfoSeria
 from app.models import Product, Order, OrderItem
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
-from rest_framework.permissions import IsAuthenticated
+from rest_framework.permissions import (
+    IsAuthenticated,
+    IsAdminUser,
+    AllowAny
+)
 from rest_framework.views import APIView
 
 
 class ProductListAPIView(generics.ListAPIView):
     queryset = Product.objects.filter(stock__gt=0)
     serializer_class = ProductSerializer
+    
+    def get_permissions(self):
+        self.permission_classes = [AllowAny]
+        if self.request.method == 'POST':
+            self.permission_classes = [IsAdminUser]
+        return super().get_permissions()
     
 class ProductDetailAPIView(generics.RetrieveAPIView):
     queryset = Product.objects.all()
