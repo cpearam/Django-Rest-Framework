@@ -4,10 +4,21 @@ GET http://localhost:8000/products/ HTTP/1.1
 
 POST http://localhost:8000/products/ HTTP/1.1
 Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5OTAwOTk4LCJpYXQiOjE3Mzk5MDA2OTgsImp0aSI6ImMwNTgzZWUxN2I1YzRlYWFhMjc3YzQyMTI3Y2QyMzllIiwidXNlcl9pZCI6Mn0.UsaQGmuqcpd0KDcaEl3Yxb69SwdS05NqGHiIsxq5dWw
 
 {
     "name":"Television",
     "price": 300.00,
     "stock": 5,
-    "description": "An amazing product",
+    "description": "An amazing product"
+}
+
+###
+
+POST http://localhost:8000/api/token/ HTTP/1.1
+Content-Type: application/json
+
+{
+    "username": "ram",
+    "password": "test"
 }
