@@ -55,3 +55,45 @@ Content-Type: application/json
 {
     "refresh": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTczOTk4NzcyOCwiaWF0IjoxNzM5OTAxMzI4LCJqdGkiOiJjODA3OWIwYTc4YTM0MzkwYTdhMzMyMzNhMDI2YzNmMCIsInVzZXJfaWQiOjJ9.a0AXy-YQ15cWyyKmLUEQZekQISQwyHBfjR8cS53ekeg"
 }
+
+###
+POST http://localhost:8000/orders/ HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQwNTA1NTg2LCJpYXQiOjE3NDA1MDUyODYsImp0aSI6ImZhMDE2MTc4NDMxYzQ3NTJiY2YyMmMxMTRkNzhmMWY4IiwidXNlcl9pZCI6Mn0.B9oC1tNf9TzMOnKOcFTp-JQ4N9jS3O-YMQGE1q4bTBw
+
+{
+    "status": "Pending",
+    "items": [
+        {
+            "product": 2,
+            "quantity": 2
+        },
+        {
+            "product": 3,
+            "quantity": 1
+        }
+    ]
+}
+
+###
+PUT http://localhost:8000/orders/04c6a754-7c5f-4dcf-9b25-1365fd0ee768/ HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQwNTA2Njc1LCJpYXQiOjE3NDA1MDYzNzUsImp0aSI6ImU3NTU3NzA1ZmQxMTQzOTliNTM3NDQ3MDk4ODAzZjY4IiwidXNlcl9pZCI6Mn0.xWZcokAs300ds1q3zhWLnBMqy5jk8rqwb5lE0X7rJgM
+
+{
+    "status": "Pending",
+    "items": [
+        {
+            "product": 4,
+            "quantity": 2
+        },
+        {
+            "product": 1,
+            "quantity": 2
+        }
+    ]
+}
+
+###
+DELETE http://localhost:8000/orders/04c6a754-7c5f-4dcf-9b25-1365fd0ee768/ HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQwNTA3MTA2LCJpYXQiOjE3NDA1MDY4MDYsImp0aSI6ImRhYjMyNGE0ZjJiNDQ5OWU4YTE3OWMxNmVmZGNmYmYzIiwidXNlcl9pZCI6Mn0.YnL0vGKUBQ4cHOChVo71hQDui67jQQrOj2ajZGLds20
